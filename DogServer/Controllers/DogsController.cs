@@ -18,21 +18,15 @@ namespace DogServer.Controllers
 
         // POST: api/Dogs/Taint/5
         [System.Web.Http.HttpPost]
-        [ValidateAntiForgeryToken]
-        public HttpResponseMessage Taint([Bind(Include = "Id,Name,ImageUrl")] Dog dog)
+        public HttpResponseMessage Taint(int id)
         {
-            if (ModelState.IsValid)
-            {
-                db.Dog.Single(s => s == dog).ImageUrl = "http://bit.ly/17yp0G1";
-                db.SaveChanges();
-                return Request.CreateResponse(HttpStatusCode.Accepted);
-            }
-            return Request.CreateResponse(HttpStatusCode.NotFound);
+            db.Dog.Single(s => s.Id == id).ImageUrl = "http://bit.ly/17yp0G1";
+            db.SaveChanges();
+            return Request.CreateResponse(HttpStatusCode.Accepted);
         }
 
         // POST: api/Dogs/resurrect
         [System.Web.Http.HttpPost]
-        [ValidateAntiForgeryToken]
         public HttpResponseMessage Resurrect()
         {
             db.Database.Delete();
