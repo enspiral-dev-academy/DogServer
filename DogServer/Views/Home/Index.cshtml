@@ -1,0 +1,38 @@
+﻿@model DogServer.Models.CatDog
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<ul id="dogs">
+    <h1>Dogs</h1>
+    @foreach (var dog in Model.dogs)
+    {
+        <li>
+            <h2>@dog.Name</h2>
+            <img src="@dog.ImageUrl"/>
+        </li>
+    }
+</ul>
+
+<ul id="cats">
+    <h1>Cats</h1>
+    @using (Html.BeginForm("ResurectCats", "Home", FormMethod.Post))
+    {
+        <input type="submit" value="resurrect cats"/>
+    }
+
+    @foreach (var cat in Model.cats)
+    {
+        <li>
+            <h2>@cat.name</h2>
+            <img src="@cat.image_url" alt=""/>
+
+            @using (Html.BeginForm("TaintCat", "Home", new {id = cat.id},FormMethod.Post))
+            {
+                <input type = "submit" value = "taint"/>
+            }
+
+        </li>
+    }
+</ul>
