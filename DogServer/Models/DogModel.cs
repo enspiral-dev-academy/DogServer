@@ -13,6 +13,8 @@ namespace DogServer.Models
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<DogModel, Configuration>());
+            base.OnModelCreating(modelBuilder);
         }
     }
 }
