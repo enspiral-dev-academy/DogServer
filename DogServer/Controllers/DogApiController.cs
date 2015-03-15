@@ -7,7 +7,7 @@ using DogServer.Models;
 
 namespace DogServer.Controllers
 {
-    public class DogApiController : ApiController
+    public class DogsController : ApiController
     {
         private readonly DogModel db = new DogModel();
         // GET: api/Dogs
