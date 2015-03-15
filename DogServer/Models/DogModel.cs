@@ -5,7 +5,7 @@ namespace DogServer.Models
     public class DogModel : DbContext
     {
         public DogModel()
-            : base("name=DogModel")
+            : base("name=DefaultConnection")
         {
         }
 
