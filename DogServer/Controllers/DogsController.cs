@@ -16,8 +16,8 @@ namespace DogServer.Controllers
             return db.Dog.Select(s => s);
         }
 
-        // POST: api/Dogs/Taint/5
         [System.Web.Http.HttpPost]
+        [System.Web.Http.Route("api/dogs/taint/{id}")]
         public HttpResponseMessage Taint(int id)
         {
             db.Dog.Single(s => s.Id == id).ImageUrl = "http://bit.ly/17yp0G1";
@@ -25,8 +25,8 @@ namespace DogServer.Controllers
             return Request.CreateResponse(HttpStatusCode.Accepted);
         }
 
-        // POST: api/Dogs/resurrect
         [System.Web.Http.HttpPost]
+        [System.Web.Http.Route("api/dogs/resurrect")]
         public HttpResponseMessage Resurrect()
         {
             db.Database.Delete();
