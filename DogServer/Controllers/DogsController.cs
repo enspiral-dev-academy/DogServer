@@ -3,6 +3,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using DogServer.Models;
+using WebGrease.Css.Extensions;
 
 namespace DogServer.Controllers
 {
@@ -27,8 +28,8 @@ namespace DogServer.Controllers
         [HttpPost]
         public HttpResponseMessage PostRessurect()
         {
-            db.Database.Delete();
-            db.Database.Create();
+            var temp = db.Dog.Select(s => s);
+            temp.ForEach(each => db.Dog.Remove(each));
             db.SaveChanges();
             new DatabaseSeed().Seed(new DogModel());
             return Request.CreateResponse(HttpStatusCode.Accepted);
